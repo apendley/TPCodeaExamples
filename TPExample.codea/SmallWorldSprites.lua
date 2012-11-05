@@ -2,7 +2,6 @@
 -- created with TexturePacker (http://www.texturepacker.com)
 tp = tp or {}
 
---tp.SmallWorldSprites = {
 tp["SmallWorldSprites"] = {
     smartUpdateKey="$TexturePacker:SmartUpdate:f47cb5089dbd381fd3177c8e8fe868c0$",
     texture={name="SmallWorldSprites", size={w=512,h=1024}},

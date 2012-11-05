@@ -1,7 +1,7 @@
 -- TPExample
 
 function setup()
-    spriteSheet = tpBatch(tp.SmallWorldSprites)
+    spriteSheet = tpBatch(tp["SmallWorldSprites"])
 end
 
 
