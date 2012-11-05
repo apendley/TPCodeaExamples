@@ -59,7 +59,7 @@ local function _getargs(...)
     return 0, 0, 0, 1, 1
 end
 
--- usage: sprite(spriteName, [x, y [,rotation [,scaleX [,scaleY]]]])
+-- usage: batch:sprite(spriteName, [x, y [,rotation [,scaleX [,scaleY]]]])
 function tpBatch:sprite(spriteName, ...)
     local frame = self.frames[spriteName]
     local size, uvRect = frame.frameSize, frame.uvRect
