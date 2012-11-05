@@ -5,9 +5,9 @@ Example projects for Codea TexturePacker exporters (TPCodea) and tpBatch.lua
 
 ##Instructions for TPCodeaTabExample (uses Codea project tab exporter):
 
-###Import via photo album
-1. Import SmallWorldSprites.png into Codea through your photo album (make sure to name it SmallWorldSprites, and make sure "Retina" is on when you import it)
-2. Install the TPCodeaTabExample.codea project into the Codea app
+###Import via copy/paste
+1. Open https://github.com/apendley/TPCodeaExamples/blob/master/SmallWorldSprites.png in Mobile Safari, and copy the image to the clipboard
+2. Import the copied image into Codea
 3. Open the TPCodeaTabExample project in Codea and run it!
 
 ###Import via Dropbox:
@@ -22,11 +22,10 @@ Example projects for Codea TexturePacker exporters (TPCodea) and tpBatch.lua
 
 ##Instructions for TPCodeaChunkExample (uses Codea chunk exporter):
 
-###Import via photo album
-
-1. Import SmallWorldSprites.png into Codea through your photo album (make sure to name it SmallWorldSprites, and make sure "Retina" is on when you import it)
-2. Install the TPCodeaChunkExample.codea project into the Codea app
-3. Open the TPCodeaChunkExample project in Codea and run it!
+###Import via copy/paste
+1. Open https://github.com/apendley/TPCodeaExamples/blob/master/SmallWorldSprites.png in Mobile Safari, and copy the image to the clipboard
+2. Import the copied image into Codea
+3. Open the TPCodeaTabExample project in Codea and run it!
 
 ###Import via Dropbox:
 
