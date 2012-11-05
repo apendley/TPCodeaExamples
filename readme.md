@@ -14,5 +14,5 @@ Instructions:
 Notes:
 =
 
-* This project uses the Codea (project tab) exporter.
+* This project uses data generated from the Codea (project tab) exporter.
 * I've added the Small World assets and the TexturePacker file for reference, so you can see the settings used to create the sprite sheet. Pay special attention to the AutoSD options if you plan on making your sprite sheet retina-ready.
