@@ -1,7 +1,7 @@
 TPCodeaExample
 =
 
-Example project for TexturePacker exporters (TPCodea) and tpBatch.lua
+Example project for TexturePacker Project Tab exporter (TPCodea) and tpBatch.lua
 
 
 Instructions:
