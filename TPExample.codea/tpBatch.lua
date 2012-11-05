@@ -58,7 +58,7 @@ local function _getargs(...)
     return 0, 0, 0, 1, 1
 end
 
--- sprite(x, y, r, scaleX, scaleY)
+-- usage: sprite(spriteName, [x, y [,r [,scaleX [,scaleY]]]])
 function tpBatch:sprite(spriteName, ...)
     local frame = self.frames[spriteName]
     local size, uvRect = frame.frameSize, frame.uvRect
