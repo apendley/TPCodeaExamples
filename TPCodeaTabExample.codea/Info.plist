@@ -13,9 +13,7 @@
 	<key>Created</key>
 	<string>2012-11-05 13:55:39 +0000</string>
 	<key>Dependencies</key>
-	<array>
-		<string>ImportURL</string>
-	</array>
+	<array/>
 	<key>Description</key>
 	<string>No description available</string>
 </dict>
