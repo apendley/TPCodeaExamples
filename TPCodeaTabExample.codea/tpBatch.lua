@@ -15,6 +15,7 @@ local _defaultSpritePack = "Documents"
 --        * push/pop/resetStyle() (only spriteMode will be supported)
 --
 
+-- usage: batch = tpBatch(atlasData [,spritePack])
 function tpBatch:init(atlasData, spritePack)
     spritePack = spritePack or _defaultSpritePack
     
