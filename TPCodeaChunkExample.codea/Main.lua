@@ -1,9 +1,11 @@
 -- pickle
 
-tp = tp or {}
-
 local _spriteSheetURL =
 "https://raw.github.com/apendley/TPCodeaExamples/master/assets/chunk/SmallWorldSprites.lua"
+
+local function createBatchRenderer(object)
+    spriteSheet = tpBatch(object)
+end
 
 function setup()
     -- uncomment this to re-download and save sprite sheet data
@@ -14,16 +16,14 @@ function setup()
     
     if sheet then
         print("sprite sheet Found!")
-        tp["SmallWorldSprites"] = sheet
-        spriteSheet = tpBatch(tp["SmallWorldSprites"])        
+        createBatchRenderer(sheet)
     else
         print("Downloading sprite sheet...")
         http.request(_spriteSheetURL, function(data, status, headers)
             if status == 200 then
                 local object = assert(loadstring(data))()
-                tp["SmallWorldSprites"] = object
                 pickle.dump(object, "SmallWorldSprites")
-                spriteSheet = tpBatch(object)
+                createBatchRenderer(object)
                 print("Sprite sheet data downloaded")
             else
                 print("Failed to download sprite sheet data")
