@@ -38,7 +38,7 @@
         <key>dataFormat</key>
         <string>codea-tab</string>
         <key>textureFileName</key>
-        <filename>SmallWorld@2x..png</filename>
+        <filename>../../../../Desktop/SpriteSheetTest/SmallWorld/SmallWorldSprites@2x.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>ditherType</key>
@@ -121,7 +121,7 @@
             <enum type="AndEngine::MagFilter">MagLinear</enum>
         </struct>
         <key>dataFileName</key>
-        <filename>SmallWorld@2x.@2x..lua</filename>
+        <filename>../../../../Desktop/SpriteSheetTest/SmallWorld/SmallWorldSprites@2x.lua</filename>
         <key>mainExtension</key>
         <string>@2x.</string>
         <key>forceIdenticalLayout</key>
