@@ -15,6 +15,7 @@ local _defaultSpritePack = "Documents"
 --        * push/pop/resetStyle() (only spriteMode will be supported)
 --
 
+-- usage: batch = tpBatch(atlasData [,spritePack])
 function tpBatch:init(atlasData, spritePack)
     spritePack = spritePack or _defaultSpritePack
     
@@ -58,7 +59,7 @@ local function _getargs(...)
     return 0, 0, 0, 1, 1
 end
 
--- usage: sprite(spriteName, [x, y [,rotation [,scaleX [,scaleY]]]])
+-- usage: batch:sprite(spriteName, [x, y [,rotation [,scaleX [,scaleY]]]])
 function tpBatch:sprite(spriteName, ...)
     local frame = self.frames[spriteName]
     local size, uvRect = frame.frameSize, frame.uvRect
