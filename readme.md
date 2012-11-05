@@ -14,11 +14,11 @@ Instructions:
 Alternate Instructions Using Dropbox:
 =
 
-1. Re-export the sprite sheet
-2. Add SmallWorldSprites@2x.png and SmallWorldSprites.png to the Apps/Codea folder in your Dropbox
+1. Republish the sprite sheet
+2. Copy the newly-exported SmallWorldSprites@2x.png and SmallWorldSprites.png to the Apps/Codea folder in your Dropbox
 3. In Codea, sync your Dropbox sprite pack
 4. Install the TPExample project into the Codea app
-5. Open the TPExample project in codea, and replace the contents of the SmallWorldSprites tab with the contents of the newly exported SmallWorldSprites.lua file
+5. Open the TPExample project in codea, and replace the contents of the SmallWorldSprites tab with the contents of the newly-exported SmallWorldSprites.lua file
 6. In the setup() function in the Main tab, change <code>spriteSheet = tpBatch(tp["SmallWorldSprites"])</code> to <code>spriteSheet = tpBatch(tp["SmallWorldSprites"], "Dropbox")</code>
 7. Run the project
 
