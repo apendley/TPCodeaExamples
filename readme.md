@@ -31,7 +31,7 @@ Example projects for Codea TexturePacker exporters (TPCodea) and tpBatch.lua.
 2. In the createBatchRenderer() function in the Main tab, change <code>spriteSheet = tpBatch(object)</code> to <code>spriteSheet = tpBatch(object, "Dropbox")</code>
 3. Run the project
 
-On the first run, the sprite sheet data will be downloaded from your Dropbox and saved to your project's data. On subsequent runs, the sprite sheet data will be loaded from your project's data instead of being downloaded.
+On the first run, the sprite sheet data will be downloaded from assets/chunk/SmallWorldSprites.lua in this repo. On subsequent runs, the sprite sheet data will be loaded from your project's data instead of being downloaded.
 
 ##Notes:
 
