@@ -110,26 +110,24 @@ function tpBatch:sprite(spriteName, x, y, w, h)
     local m2x, m2x1 = m2*x, m2*x1
     local m6y, m6y1 = m6*y, m6*y1    
 
-    local ax, ay = m1x+m5y+m13, m2x+m6y+m14
-    local bx, by = m1x+m5y1+m13, m2x+m6y1+m14
-    local cx, cy = m1x1+m5y1+m13, m2x1+m6y1+m14
-    local dx, dy = m1x1+m5y+m13, m2x1+m6y+m14
+    local ax, ay = m1x+m5y1+m13, m2x+m6y1+m14
+    local bx, by = m1x+m5y+m13, m2x+m6y+m14
+    local cx, cy = m1x1+m5y+m13, m2x1+m6y+m14    
+    local dx, dy = m1x1+m5y1+m13, m2x1+m6y1+m14
 
-    local verts
-    if rotated 
-        then verts = {{ax, ay}, {dx, dy}, {cx, cy}, {bx, by}}
-        else verts = {{bx, by}, {ax, ay}, {dx, dy}, {cx, cy}} 
+    if rotated then
+        ax, ay, bx, by, cx, cy, dx, dy =
+        bx, by, cx, cy, dx, dy, ax, ay
     end
     
-    -- assign transformed verts to mesh
-    local first, v = (idx - 1) * 6 + 1
-    v = verts[1]  mesh:vertex(first+0, v[1], v[2]) 
-    v = verts[2]  mesh:vertex(first+1, v[1], v[2])
-    v = verts[3]  mesh:vertex(first+2, v[1], v[2])
-    v = verts[1]  mesh:vertex(first+3, v[1], v[2])
-    v = verts[3]  mesh:vertex(first+4, v[1], v[2])
-    v = verts[4]  mesh:vertex(first+5, v[1], v[2])    
-    
+    local begin = (idx-1) * 6
+    mesh:vertex(begin+1, ax, ay)
+    mesh:vertex(begin+2, bx, by)
+    mesh:vertex(begin+3, cx, cy)
+    mesh:vertex(begin+4, ax, ay)
+    mesh:vertex(begin+5, cx, cy)
+    mesh:vertex(begin+6, dx, dy)
+
     -- set up uv coords
     local uv = frame.uvRect
     mesh:setRectTex(idx, uv.s, uv.t, uv.tw, uv.th)
