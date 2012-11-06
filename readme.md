@@ -35,8 +35,8 @@ On the first run, the sprite sheet data will be downloaded from assets/chunk/Sma
 
 ##Notes:
 
-* I've added the Small World assets and the TexturePacker file for reference so you can see how the sprite sheet is assembled, and so you can see the AutoSD options used to create a non-retina version of your sprite sheet.
-* When creating sprite sheets for your own project, you only need to have TexturePacker generate the non-retina version (using the AutoSD feature) if you plan on using Dropbox to import your sprite sheet into Codea. If you import using the copy/paste or photo album methods, Codea can automatically generate the non-retina version when you import the texture.
+* I've added the Small World assets and the TexturePacker file for reference so you can see how the sprite sheet is assembled, and so you can see the AutoSD options used to create a non-retina version of your sprite sheet texture.
+* When creating sprite sheets for your own project, you only need to have TexturePacker generate the non-retina version (using the AutoSD feature) if you plan on using Dropbox to import your sprite sheet texure into Codea. If you import using the copy/paste or photo album methods, Codea can automatically generate the non-retina version when you import the texture.
 
 
 
