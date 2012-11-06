@@ -11,7 +11,7 @@ function setup()
     -- uncomment this to re-download and save sprite sheet data
     --clearProjectData()
     
-    -- attempt to grab sprite sheet from project data
+    -- attempt to grab sprite sheet frame data from project data
     local frameData = pickle.load("SmallWorldSprites")
     
     if frameData then
