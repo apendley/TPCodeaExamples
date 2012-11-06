@@ -7,8 +7,8 @@
 	<key>Buffer Order</key>
 	<array>
 		<string>Main</string>
-		<string>pickle</string>
 		<string>tpBatch</string>
+		<string>pickle</string>
 	</array>
 	<key>Created</key>
 	<string>2012-11-05 16:53:14 +0000</string>

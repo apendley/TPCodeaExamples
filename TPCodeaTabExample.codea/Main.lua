@@ -1,4 +1,4 @@
--- TPExample
+-- TPCodeaTabExample
 
 function setup()
     spriteSheet = tpBatch(tp["SmallWorldSprites"])

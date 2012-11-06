@@ -1,6 +1,6 @@
 -- TPCodeaChunkExample
 
-local _spriteSheetURL =
+local _frameDataURL =
 "https://raw.github.com/apendley/TPCodeaExamples/master/assets/chunk/SmallWorldSprites.lua"
 
 local function createBatchRenderer(object)
@@ -8,10 +8,10 @@ local function createBatchRenderer(object)
 end
 
 function setup()
-    -- uncomment this to force download and save of sprite sheet frame data
+    -- uncomment this to force download and save of frame data
     --clearProjectData()
     
-    -- attempt to grab sprite sheet frame data from project data
+    -- attempt to grab frame data from project data
     local frameData = pickle.load("SmallWorldSprites")
     
     if frameData then
@@ -19,14 +19,14 @@ function setup()
         createBatchRenderer(frameData)
     else
         print("Downloading frame data...")
-        http.request(_spriteSheetURL, function(data, status, headers)
+        http.request(_frameDataURL, function(data, status, headers)
             if status == 200 then
                 local object = assert(loadstring(data))()
                 pickle.dump(object, "SmallWorldSprites")
                 createBatchRenderer(object)
                 print("Frame data downloaded")
             else
-                print("Failed to download sprite sheet frame data")
+                print("Failed to download frame data")
             end
         end)
     end
