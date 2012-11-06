@@ -1,4 +1,4 @@
--- pickle
+-- TPCodeaChunkExample
 
 local _spriteSheetURL =
 "https://raw.github.com/apendley/TPCodeaExamples/master/assets/chunk/SmallWorldSprites.lua"
