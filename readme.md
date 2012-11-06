@@ -2,7 +2,7 @@
 
 Example projects for Codea TexturePacker exporters (TPCodea) and tpBatch.lua. 
 
-##Importing example sprite sheet into Codea
+##Importing example sprite sheet texture into Codea
 ###Import via copy/paste
 1. Open https://github.com/apendley/TPCodeaExamples/blob/master/assets/SmallWorldSprites%402x.png in Mobile Safari, and copy the image to the clipboard
 2. Import the copied image into Codea. Make sure to name it "SmallWorldSprites" (without the @2x suffix), and make sure the Retina option is selected, so Codea will create the non-retina version.
