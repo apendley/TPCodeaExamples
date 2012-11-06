@@ -15,7 +15,7 @@ function setup()
     local frameData = pickle.load("SmallWorldSprites")
     
     if frameData then
-        print("frame data found!")
+        print("Frame data found!")
         createBatchRenderer(frameData)
     else
         print("Downloading frame data...")
@@ -24,7 +24,7 @@ function setup()
                 local object = assert(loadstring(data))()
                 pickle.dump(object, "SmallWorldSprites")
                 createBatchRenderer(object)
-                print("Sprite sheet data downloaded")
+                print("Frame data downloaded")
             else
                 print("Failed to download sprite sheet frame data")
             end
