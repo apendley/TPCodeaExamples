@@ -37,4 +37,4 @@ On the first run, the sprite sheet data will be downloaded from your Dropbox and
 
 ##Notes:
 
-* I've added the Small World assets and the TexturePacker file for reference for 2 reasons: 1) so you can re-export the sprite sheet data to use the Dropbox import method, and 2) so you can see the settings used to create a Retina-ready Codea sprite sheet.
+* I've added the Small World assets and the TexturePacker file for reference so you can see the settings used to create a Retina-ready Codea sprite sheet.
