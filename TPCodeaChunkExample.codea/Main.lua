@@ -8,7 +8,7 @@ local function createBatchRenderer(object)
 end
 
 function setup()
-    -- uncomment this to re-download and save sprite sheet data
+    -- uncomment this to force download and save of sprite sheet frame data
     --clearProjectData()
     
     -- attempt to grab sprite sheet frame data from project data
