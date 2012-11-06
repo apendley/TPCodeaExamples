@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Author</key>
-	<string>Unknown</string>
+	<string>Aaron Pendley</string>
 	<key>Buffer Order</key>
 	<array>
 		<string>Main</string>
@@ -15,6 +15,6 @@
 	<key>Dependencies</key>
 	<array/>
 	<key>Description</key>
-	<string>No description available</string>
+	<string>Example of using sprite sheets exported from TexturePacker using the Codea project tab exporter</string>
 </dict>
 </plist>
