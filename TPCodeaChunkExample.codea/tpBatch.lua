@@ -155,6 +155,16 @@ function tpBatch:frameSize(spriteName)
     return size.w, size.h
 end
 
+function tpBatch:spriteList()
+    local t = {}
+    
+    for k in pairs(self.frames) do
+        table.insert(t, k)
+    end
+    
+    return t
+end
+
 function tpBatch:draw()
     local indices = self.indices
     
