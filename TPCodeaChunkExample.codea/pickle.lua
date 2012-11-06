@@ -1,8 +1,13 @@
 -- pickle
 
--- Based on pickle.lua at http://failboat.me/2010/serializing-lua-objects-into-lua-code/
--- Modified by Aaron Pendley to work with Codea (November 2012)
--- license unknown
+-- Based on code at failboat.me/2010/serializing-lua-objects-into-lua-code
+-- Modified by Aaron Pendley for Codea (November 2012)
+-- Original license unknown
+
+-- NOTES:
+-- * does not serialize metatables
+-- * does not serialize userdata or threads
+-- * only functions without upvalues are reliably serialized/deserialized
 
 local objects = {}
 setmetatable(objects, {__index={["subset"]=function(object, proxies)
