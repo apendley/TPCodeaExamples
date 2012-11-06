@@ -1,6 +1,6 @@
 #TPCodeaExamples 
 
-Example projects for Codea TexturePacker exporters (TPCodea) and tpBatch.lua. 
+Example projects for Codea TexturePacker exporters (https://github.com/apendley/TPCodea), and home of the tpBatch to batch render sprites using TexturePacker sprite sheets.
 
 ##Importing example sprite sheet texture into Codea
 ###Import via copy/paste
