@@ -4,16 +4,8 @@ tpBatch = class()
 -- customization: default sprite pack for TexturePacker atlases
 local _defaultSpritePack = "Documents"
 
---
--- TODO: 
---    1. Directly set mesh verts instead of using addRect()/setRect()
---    2. Add methods similar to Codea's sprite drawing, style,
---       and matrix functions, and have them affect sprite drawing:
---        * scale(), rotate(), translate()
---        * push/pop/apply/resetMatrix()
---        * spriteMode()
---        * push/pop/resetStyle() (only spriteMode will be supported)
---
+-- set to true to draw debug bounding boxes
+local _debugDraw = false
 
 -- usage: batch = tpBatch(atlasData [,spritePack])
 function tpBatch:init(atlasData, spritePack)
@@ -25,63 +17,125 @@ function tpBatch:init(atlasData, spritePack)
     
     self.indices = {}
     self.nextSprite = 1
-    self.spritesLastFrame = 0
-    
+    self.spritesLastFrame = 0 
 end
 
-local function _debugDraw(self, x, y, w, h, sx, sy, r)
-    local stack = self.modeStack
+local function _drawBB(self, x, y, w, h)
     pushStyle()
+    rectMode(spriteMode())
     fill(255, 255, 255, 128)
-    rectMode(CENTER)
-    pushMatrix()
-    translate(x, y)
-    rotate(math.deg(r))
-    rect(0, 0, w*sx, h*sy)
-    popMatrix()
-    popStyle()    
+    rect(x, y, w, h)
+    popStyle()
 end
 
-local function _getargs(...)
-    local narg = arg["n"]
-    
-    if narg == 2 then
-        return arg[1], arg[2], 0, 1, 1
-    elseif narg == 3 then
-        return arg[1], arg[2], math.rad(arg[3]), 1, 1
-    elseif narg == 4 then
-        local _scale = arg[4]
-        return arg[1], arg[2], math.rad(arg[3]), _scale, _scale
-    elseif narg == 5 then
-        return arg[1], arg[2], math.rad(arg[3]), arg[4], arg[5]
-    end
-    
-    return 0, 0, 0, 1, 1
-end
-
--- usage: batch:sprite(spriteName, [x, y [,rotation [,scaleX [,scaleY]]]])
-function tpBatch:sprite(spriteName, ...)
+-- usage: batch:sprite(spriteName)
+--        batch:sprite(spriteName, x, y)
+--        batch:sprite(spriteName, x, y, w)
+--        batch:sprite(spriteName, x, y, w, h)
+function tpBatch:sprite(spriteName, x, y, w, h)
     local frame = self.frames[spriteName]
-    local size, uvRect = frame.frameSize, frame.uvRect
-    local x, y, r, sx, sy = _getargs(...)
-    local w, h = size.w, size.h
+    local rotated = frame.rotated    
+    local sourceSize = frame.sourceSize
+    local ow, oh = sourceSize.w, sourceSize.h    
+    local size = frame.frameSize
+    local fw, fh = size.w, size.h
     
-    if frame.rotated then r = r + 1.5708 end
+    x, y = x or 0, y or 0
+    
+    if rotated then fw, fh = fh, fw end    
+    
+    -- modify scale based on presence/absense of w/h parameters
+    if not w then 
+        w, h = fw, fh 
+    else 
+        if h then
+            local nw, nh = w, h
+            ow, oh, w, h = nw, nh, fw*(nw/ow), fh*(nh/oh)
+        else
+            local origWidth, nw = ow, w
+            local nh = oh * (nw/origWidth)
+            ow, oh, w, h = nw, nh, fw*(nw/ow), fh*(nh/oh)
+        end
+    end
 
-    local indices, mesh = self.indices, self.mesh    
+    -- create a new rect in our mesh if we need one
+    local mesh, indices, idx = self.mesh, self.indices    
     if self.nextSprite > #indices then
-        local idx = mesh:addRect(x, y, w*sx, h*sy, r)
-        mesh:setRectTex(idx, uvRect.s, uvRect.t, uvRect.tw, uvRect.th)
+        idx = mesh:addRect(0, 0, 0, 0, 0)
         table.insert(indices, idx)
     else
-        local idx = indices[self.nextSprite]
-        mesh:setRect(idx, x, y, w*sx, h*sy, r)
-        mesh:setRectTex(idx, uvRect.s, uvRect.t, uvRect.tw, uvRect.th)        
+        idx = indices[self.nextSprite]
     end
     
-    self.nextSprite = self.nextSprite + 1    
+    -- move to the next sprite index
+    self.nextSprite = self.nextSprite + 1
     
-    --_debugDraw(self, x, y, w, h, sx, sy, r)
+    -- draw bounding box if debug draw is enabled
+    if _debugDraw then
+        _drawBB(self, x, y, ow, oh) 
+    end
+    
+    -- use current sprite mode to determine sprite anchoring
+    local mode = spriteMode()    
+    if mode == CENTER then
+        x = x - w*0.5
+        y = y - h*0.5        
+    else
+        if frame.trimmed then
+            x = x + (ow-w) * 0.5
+            y = y + (oh-h) * 0.5
+        end
+        
+        if mode == CORNERS then
+            if x > w then x, w = w, x end
+            if y > h then y, h = h, y end
+            w = w - x
+            h = h - y    
+        elseif mode == RADIUS then
+            x = x - ow
+            y = y - oh
+            w = w * 2
+            h = h * 2        
+        end
+    end
+    
+    -- use current model matrix to transform verts
+    local m = modelMatrix()    
+    local m1, m2, m5, m6, m13, m14 = m[1], m[2], m[5], m[6], m[13], m[14]
+    
+    -- transform verts
+    local x1, y1 = x+w, y+h    
+    local m1x, m1x1 = m1*x, m1*x1
+    local m5y, m5y1 = m5*y, m5*y1
+    local m2x, m2x1 = m2*x, m2*x1
+    local m6y, m6y1 = m6*y, m6*y1    
+
+    local ax, ay = m1x+m5y+m13, m2x+m6y+m14
+    local bx, by = m1x+m5y1+m13, m2x+m6y1+m14
+    local cx, cy = m1x1+m5y1+m13, m2x1+m6y1+m14
+    local dx, dy = m1x1+m5y+m13, m2x1+m6y+m14
+
+    local verts
+    if rotated 
+        then verts = {{ax, ay}, {dx, dy}, {cx, cy}, {bx, by}}
+        else verts = {{bx, by}, {ax, ay}, {dx, dy}, {cx, cy}} 
+    end
+    
+    -- assign transformed verts to mesh
+    local first, v = (idx - 1) * 6 + 1
+    v = verts[1]  mesh:vertex(first+0, v[1], v[2]) 
+    v = verts[2]  mesh:vertex(first+1, v[1], v[2])
+    v = verts[3]  mesh:vertex(first+2, v[1], v[2])
+    v = verts[1]  mesh:vertex(first+3, v[1], v[2])
+    v = verts[3]  mesh:vertex(first+4, v[1], v[2])
+    v = verts[4]  mesh:vertex(first+5, v[1], v[2])    
+    
+    -- set up uv coords
+    local uv = frame.uvRect
+    mesh:setRectTex(idx, uv.s, uv.t, uv.tw, uv.th)
+    
+    -- set up vert colors from tint()
+    mesh:setRectColor(idx, tint())
 end
 
 function tpBatch:spriteSize(spriteName)
