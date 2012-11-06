@@ -1,5 +1,9 @@
 -- pickle
 
+-- Based on pickle.lua at http://failboat.me/2010/serializing-lua-objects-into-lua-code/
+-- Modified to work with Codea by Aaron Pendley
+-- license unknown
+
 local objects = {}
 setmetatable(objects, {__index={["subset"]=function(object, proxies)
     for _,o in ipairs(proxies) do
