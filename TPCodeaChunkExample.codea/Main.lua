@@ -12,13 +12,13 @@ function setup()
     --clearProjectData()
     
     -- attempt to grab sprite sheet from project data
-    local sheet = pickle.load("SmallWorldSprites")
+    local frameData = pickle.load("SmallWorldSprites")
     
-    if sheet then
-        print("sprite sheet Found!")
-        createBatchRenderer(sheet)
+    if frameData then
+        print("frame data found!")
+        createBatchRenderer(frameData)
     else
-        print("Downloading sprite sheet...")
+        print("Downloading frame data...")
         http.request(_spriteSheetURL, function(data, status, headers)
             if status == 200 then
                 local object = assert(loadstring(data))()
@@ -26,7 +26,7 @@ function setup()
                 createBatchRenderer(object)
                 print("Sprite sheet data downloaded")
             else
-                print("Failed to download sprite sheet data")
+                print("Failed to download sprite sheet frame data")
             end
         end)
     end
