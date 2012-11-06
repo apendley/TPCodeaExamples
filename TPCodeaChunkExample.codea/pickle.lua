@@ -1,7 +1,7 @@
 -- pickle
 
 -- Based on pickle.lua at http://failboat.me/2010/serializing-lua-objects-into-lua-code/
--- Modified to work with Codea by Aaron Pendley
+-- Modified to work with Codea by Aaron Pendley (November 2012)
 -- license unknown
 
 local objects = {}
