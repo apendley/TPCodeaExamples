@@ -7,7 +7,7 @@
 	<key>Buffer Order</key>
 	<array>
 		<string>Main</string>
-		<string>tpBatch</string>
+		<string>SpriteBatch</string>
 		<string>SmallWorldSprites</string>
 	</array>
 	<key>Created</key>

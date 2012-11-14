@@ -4,7 +4,7 @@ local _frameDataURL =
 "https://raw.github.com/apendley/TPCodeaExamples/master/assets/chunk/SmallWorldSprites.lua"
 
 local function createBatchRenderer(object)
-    spriteSheet = tpBatch(object)
+    batch = SpriteBatch(object)
 end
 
 function setup()
@@ -35,7 +35,7 @@ end
 function draw()
     background(0)
     
-    if not spriteSheet then return end
+    if not batch then return end
     
     local sprites = {
         "Base Large",
@@ -47,11 +47,11 @@ function draw()
     
     local x = 0
     for i,spr in ipairs(sprites) do
-        local w, h = spriteSheet:spriteSize(spr)
-        spriteSheet:sprite(spr, x+w/2, HEIGHT/2)
+        local w, h = batch:spriteSize(spr)
+        batch:sprite(spr, x+w/2, HEIGHT/2)
         x = x + w
     end
     
-    spriteSheet:draw()
+    batch:draw()
 end
 
