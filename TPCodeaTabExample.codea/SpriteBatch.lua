@@ -57,7 +57,8 @@ local function _drawBB(x, y, w, h)
     popStyle()
 end
 
--- usage: identical to Codea's sprite() function:
+-- usage: identical to Codea's sprite() function, with the addition
+--        of optional normalized texture coordinates (s, t, tw, th) 
 --    batch:sprite(spriteName)
 --    batch:sprite(spriteName, x, y)
 --    batch:sprite(spriteName, x, y, w)
@@ -77,7 +78,7 @@ function SpriteBatch:sprite(spriteName, x, y, s, t, tw, th, w, h)
     x, y = x or 0, y or 0
     
     -- swap fw and fh if frame is rotated
-    if rotated then fw, fh = fh, fw end    
+    if rotated then fw, fh = fh, fw end
     
     -- parse s, t, u, v, w, h args
     if s == nil then
@@ -88,9 +89,10 @@ function SpriteBatch:sprite(spriteName, x, y, s, t, tw, th, w, h)
         w, h = s, t        
     else
         local fuv = frame.uvRect
-        uv = {s=fuv.s+(s*fuv.tw), t=fuv.t+(t*fuv.th), tw=tw*fuv.tw, th=th*fuv.th}
+        if rotated then s, t, tw, th = t, s, th, tw end
+        uv = {s=fuv.s+(s*fuv.tw), t=fuv.t+(t*fuv.th), tw=tw*fuv.tw, th=th*fuv.th}        
     end
-
+    
     if not w then
         w, h = fw, fh
     else
