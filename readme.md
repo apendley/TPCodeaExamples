@@ -1,7 +1,7 @@
 #TPCodeaExamples 
 
 Example projects for Codea TexturePacker exporters (https://github.com/apendley/TPCodea),
-and home of the tpBatch class for batch-rendering sprites in Codea using TexturePacker-generated sprite sheets.
+and home of the SpriteBatch class for batch-rendering sprites in Codea using TexturePacker-generated sprite sheets.
 
 ##Importing example sprite sheet texture into Codea
 ###Import via copy/paste
@@ -23,13 +23,13 @@ and home of the tpBatch class for batch-rendering sprites in Codea using Texture
 #####Modifying TPExampleCodeaTab
 
 1. Install the TPCodeaTabExample project into the Codea app
-2. In the setup() function in the Main tab, change <code>spriteSheet = tpBatch(tp["SmallWorldSprites"])</code> to <code>spriteSheet = tpBatch(tp["SmallWorldSprites"], "Dropbox")</code>
+2. In the setup() function in the Main tab, change <code>batch = SpriteBatch(tp["SmallWorldSprites"])</code> to <code>batch = SpriteBatch(tp["SmallWorldSprites"], "Dropbox")</code>
 3. Run the project
 
 #####Modifying TPCodeaExampleChunk
 
 1. Install the TPCodeaChunkExample project into the Codea app and open it
-2. In the createBatchRenderer() function in the Main tab, change <code>spriteSheet = tpBatch(object)</code> to <code>spriteSheet = tpBatch(object, "Dropbox")</code>
+2. In the createBatchRenderer() function in the Main tab, change <code>batch = SpriteBatch(object)</code> to <code>batch = SpriteBatch(object, "Dropbox")</code>
 3. Run the project
 
 On the first run, the sprite sheet data will be downloaded from assets/chunk/SmallWorldSprites.lua in this repo. On subsequent runs, the sprite sheet data will be loaded from your project's data instead of being downloaded.
